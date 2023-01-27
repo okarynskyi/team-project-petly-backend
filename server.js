@@ -1,15 +1,21 @@
+const app = require('./app');
 const mongoose = require('mongoose');
 
-const app = require('./app')
+mongoose.Promise = global.Promise;
 
-const { DB_HOST } = process.env;
+const { DB_HOST, PORT } = process.env;
 
+const connection = mongoose.connect(DB_HOST);
 
-mongoose.connect(DB_HOST)
-  .then(() => app.listen(3000, () => {
-  console.log("Database connection successful")
-}))
+connection
+  .then(() => {
+    app.listen(PORT, (err) => {
+      if (err) console.error('Error at server launch', err)
+      console.log(`Server running at port ${PORT}`)
+    })
+    console.log(`Database connection successful`)
+  })
   .catch(err => {
-    console.log(err);
-    process.exit(1);
+    console.log('Failed to launch application with error:', err.message);
+    process.exit(1)
   })
