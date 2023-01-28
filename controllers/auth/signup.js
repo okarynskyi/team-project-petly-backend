@@ -6,7 +6,7 @@ const { HttpError } = require('../../helpers')
 const {JWT_SECRET} = process.env
 
 const signup = async (req, res) => {
-    
+
     const { email, password } = req.body
     
     const user = await User.findOne({ email })
@@ -18,9 +18,9 @@ const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const newUser = await User.create({ ...req.body, password: hashedPassword })
-
-    const { _id } = await User.findOne({ email })
     
+    const { _id } = newUser
+   
     const payload = {
         id: _id
     }
