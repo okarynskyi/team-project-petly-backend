@@ -20,13 +20,18 @@ const userSchema = new Schema({
     },
     region: {
         type: String,
-        required: [true, 'Region is required']
+    },
+    phone: {
+        type: String,
+        required: [true, 'Phone is required']
     },
     birthday: {
-        type: Date
+        type: Date,
+        default: null,
     },
     avatarURL: {
-        type: String
+        type: String,
+        default: null
     },
     favorites: { // масив з id тваринок
         type: Array
@@ -35,14 +40,6 @@ const userSchema = new Schema({
         type: String,
         default: null,
     },
-    // verify: {
-    //     type: Boolean,
-    //     default: false,
-    // },
-    // verificationToken: { // код для підтвердження пошти
-    //     type: String,
-    //     required: [true, 'Verify token is required'],
-    // },
 })
   
 const User = model("user", userSchema);
