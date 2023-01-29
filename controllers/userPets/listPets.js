@@ -1,10 +1,12 @@
-const { UserPet } = require("../../models")
+const { UserPet } = require("../../models");
 
 const listPets = async (req, res, next) => {
   const { _id: owner } = req.user;
-  const result = await UserPet.find({owner});
+  const userPets = await UserPet.find({owner});
     
-  res.json(result);
+  res.json({
+    userPets,
+  });
 };
 
 module.exports = listPets;

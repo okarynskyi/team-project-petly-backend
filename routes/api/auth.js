@@ -1,20 +1,20 @@
-const express = require('express')
+const express = require('express');
 
-const ctrl = require("../../controllers/auth")
-const { ctrlWrapper } = require("../../helpers")
-const { validateBody, autentication } = require("../../middlewares")
-const { signupSchema, loginSchema, userUpdateSchema } = require("../../schemas")
+const authCtrl = require("../../controllers/auth");
+const { ctrlWrapper } = require("../../helpers");
+const { validateBody, autentication } = require("../../middlewares");
+const { signupSchema, loginSchema, userUpdateSchema } = require("../../schemas");
 
-const router = express.Router()
+const router = express.Router();
 
-router.post('/signup', validateBody(signupSchema), ctrlWrapper(ctrl.signup)) 
+router.post('/signup', validateBody(signupSchema), ctrlWrapper(authCtrl.signup));
 
-router.post('/login', validateBody(loginSchema), ctrlWrapper(ctrl.login)) 
+router.post('/login', validateBody(loginSchema), ctrlWrapper(authCtrl.login));
 
-router.post('/logout', autentication, ctrlWrapper(ctrl.logout)) 
+router.post('/logout', autentication, ctrlWrapper(authCtrl.logout));
 
-router.get('/current', autentication, ctrlWrapper(ctrl.getCurrentUser))  
+router.get('/current', autentication, ctrlWrapper(authCtrl.getCurrentUser));
  
-router.patch('/', autentication, validateBody(userUpdateSchema), ctrlWrapper(ctrl.userUpdate)) 
+router.patch('/', autentication, validateBody(userUpdateSchema), ctrlWrapper(authCtrl.userUpdate));
 
-module.exports = router
+module.exports = router;

@@ -1,8 +1,8 @@
-const login = require('./login')
-const signup = require('./signup')
-const getCurrentUser = require('./getCurrentUser')
-const logout = require('./logout')
-const userUpdate = require('./userUpdate')
+const login = require('./login');
+const signup = require('./signup');
+const getCurrentUser = require('./getCurrentUser');
+const logout = require('./logout');
+const userUpdate = require('./userUpdate');
 
 module.exports = {
     login,
@@ -10,4 +10,4 @@ module.exports = {
     getCurrentUser,
     logout,
     userUpdate
-}
+};
