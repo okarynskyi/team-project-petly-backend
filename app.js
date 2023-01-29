@@ -8,6 +8,7 @@ const {
   authRouter,
   newsRouter,
   friendsRouter,
+  userRouter,
 } = require("./routes/api");
 
 const app = express();
@@ -18,7 +19,8 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/users", authRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
 app.use("/api/notices", noticesRouter);
 app.use("/api/news", newsRouter);
 app.use("/api/friends", friendsRouter);
