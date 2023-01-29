@@ -1,12 +1,11 @@
-const { HttpError } = require('../../helpers')
-const { User } = require('../../models')
+const { HttpError } = require('../../helpers');
+const { User } = require('../../models');
 
 const userUpdate = async (req, res) => {
-    console.log(req.user)
-
-    const { _id: userId } = req.user
     
-    const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body }, { new: true })
+    const { _id: userId } = req.user;
+    
+    const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body }, { new: true });
     
     if (!user) {
         throw HttpError(404)
@@ -26,4 +25,4 @@ const userUpdate = async (req, res) => {
     
 }
 
-module.exports = userUpdate
+module.exports = userUpdate;

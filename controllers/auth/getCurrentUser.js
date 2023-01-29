@@ -1,6 +1,6 @@
 const getCurrentUser = (req, res) => {
 
-    const { email, name, city, phone, birthday, avatarURL, favorites } = req.user
+    const { email, name, city, phone, birthday, avatarURL, favorites } = req.user;
     
     res.json({
         user: {
@@ -15,4 +15,4 @@ const getCurrentUser = (req, res) => {
     })
 }
 
-module.exports = getCurrentUser
+module.exports = getCurrentUser;
