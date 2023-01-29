@@ -14,11 +14,20 @@ const addPet = async (req, res) => {
     const { _id: owner } = req.user;
 
 
-    const newUserPet = await UserPet.create({ ...req.body, owner });
+    const result = await UserPet.create({ ...req.body, owner });
 
     res.status(201).json({
-        newUserPet,
+        newPet: {
+            id: result._id,
+            name: result.name,
+            birthday: result.birthday,
+            breed: result.breed,
+            petsPhotoURL: result.petsPhotoURL,
+            comments: result.comments,
+            owner: result.owner
+        }
     });
 };
 
 module.exports = addPet;
+
