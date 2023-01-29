@@ -6,8 +6,8 @@ const { autentication, isValidId } = require("../../middlewares");
 
 const router = express.Router();
 
-router.get('/', autentication, ctrlWrapper(controller.listPets));
-router.post('/', autentication, ctrlWrapper(controller.addPet));
-router.delete('/:petId', autentication, isValidId, ctrlWrapper(controller.removePet));
+router.get('/pets', autentication, ctrlWrapper(controller.listPets));
+router.post('/pets', autentication, ctrlWrapper(controller.addPet));
+router.delete('/pets/:petId', autentication, isValidId, ctrlWrapper(controller.removePet));
 
 module.exports = router;
