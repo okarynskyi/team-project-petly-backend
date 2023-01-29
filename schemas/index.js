@@ -1,10 +1,10 @@
 const {loginSchema, signupSchema, userUpdateSchema} = require("./userSchema")
-const noticePetSchema = require('./noticePetSchema')
+const noticeSchema = require('./noticePetSchema')
 const userPetSchema = require('./userPetSchema')
 
 module.exports = {
     userPetSchema,
-    noticePetSchema,
+    noticeSchema,
     loginSchema,
     signupSchema,
     userUpdateSchema,
