@@ -41,21 +41,25 @@ const noticeSchema = new Schema(
     },
     price: {
       type: Number,
+      default: null,
     },
     owner: {
-      // userId
-      type: Schema.Types.ObjectId,
-      ref: "user",
-    },
-    ownerEmail: {
-      // додається на бєку по запиту на юзера
-      type: String,
-      required: true,
-    },
-    ownerPhone: {
-      // додається на бєку по запиту на юзера
-      type: String,
-      required: true,
+      _id: {
+        // userId
+        type: Schema.Types.ObjectId,
+        ref: "user",
+        required: true,
+      },
+      email: {
+        // додається на бєку по запиту на юзера
+        type: String,
+        required: true,
+      },
+      phone: {
+        // додається на бєку по запиту на юзера
+        type: String,
+        required: true,
+      },
     },
   },
   { versionKey: false, timestamps: true }
