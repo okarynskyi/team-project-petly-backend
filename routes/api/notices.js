@@ -18,7 +18,7 @@ router.get('/favorites')
 // створити ендпоінт для видалення оголошення авторизованого користувача доданих цим же до обраних
 router.delete('/favorites/:noticeId', isValidNoticeId, autentication, ctrlWrapper(noticesCtrl.removeFromFavorite));
 // створити ендпоінт для додавання оголошень відповідно до обраної категорії
-router.post('/:category')
+router.post('/:category', validateBody)
 // створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
 router.get('/')
 // створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем 
