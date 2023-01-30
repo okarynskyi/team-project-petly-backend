@@ -1,5 +1,6 @@
-const cloudinary = require("./cloudinary");
+
+const uploadImgToCloudinary = require("./uploadImgToCloudinary")
 
 module.exports = {
-  cloudinary,
+  uploadImgToCloudinary,
 };
