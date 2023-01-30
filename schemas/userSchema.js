@@ -18,7 +18,7 @@ const loginSchema = Joi.object({
 const userUpdateSchema = Joi.object({
     name: Joi.string(),
     email: Joi.string().trim(true).min(10).max(63).email(),
-    phone: Joi.string().length(13).pattern(/^[0-9]+$/),
+    phone: Joi.string().length(13).pattern(/^\+[1-9]{1}[0-9]{3,14}$/),
     city: Joi.string()
 })
 
