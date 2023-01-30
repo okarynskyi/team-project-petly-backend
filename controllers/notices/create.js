@@ -1,6 +1,6 @@
 const { Notice } = require("../../models");
 const { HttpError } = require("../../helpers");
-const cloudinary = require("../../services/cloudinary");
+const { uploadImgToCloudinary } = require("../../services/cloudinary");
 
 const create = async (req, res) => {
   const { _id, email, phone } = req.user;
@@ -12,12 +12,7 @@ const create = async (req, res) => {
     throw HttpError(409, `Notise "${adopStatus}" already exist for ${name}`);
   }
 
-  const path = req.file.path;
-  const uploader = async (path) => await cloudinary.uploads(path, "Images");
-  const newURL = await uploader(path);
-  const id = newURL.id;
-
-  const avatarURL = await cloudinary.createImageTag(id, 336, 288);
+  const avatarURL = await uploadImgToCloudinary(req);
 
   const owner = { _id, email, phone };
 

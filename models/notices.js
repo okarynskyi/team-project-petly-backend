@@ -29,7 +29,7 @@ const noticeSchema = new Schema(
     },
     comments: {
       type: String,
-      // обов`язкове поле?
+      required: true,
     },
     avatarURL: {
       type: String,
@@ -45,18 +45,15 @@ const noticeSchema = new Schema(
     },
     owner: {
       _id: {
-        // userId
         type: Schema.Types.ObjectId,
         ref: "user",
         required: true,
       },
       email: {
-        // додається на бєку по запиту на юзера
         type: String,
         required: true,
       },
       phone: {
-        // додається на бєку по запиту на юзера
         type: String,
         required: true,
       },

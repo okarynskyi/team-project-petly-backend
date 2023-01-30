@@ -35,7 +35,7 @@ router.delete(
 router.post(
   "/",
   autentication,
-  upload.single("avatar"),
+  upload.single("petsPhotoURL"),
   validateBody(noticeSchema),
   ctrlWrapper(noticesCtrl.create)
 );
