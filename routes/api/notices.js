@@ -1,8 +1,8 @@
 const express = require('express');
 
-// const noticesCtrl = require("../../controllers/notices");
-// const { ctrlWrapper } = require("../../helpers");
-// const { validateBody, isValidId } = require("../../middlewares");
+const noticesCtrl = require("../../controllers/notices");
+const { ctrlWrapper } = require("../../helpers");
+const { validateBody, isValidNoticeId, autentication } = require("../../middlewares");
 // const {noticeSchema} = require('../../schemas')
 
 
@@ -12,13 +12,13 @@ router.get("/:category")
 // створити ендпоінт для отримання одного оголошення
 router.get("/:noticeId")
 // створити ендпоінт для додавання оголошення до обраних
-router.post("/favorites/:noticeId")
+router.post("/favorites/:noticeId", isValidNoticeId, autentication, ctrlWrapper(noticesCtrl.addToFavorite));
 // створити ендпоінт для отримання оголошень авторизованого користувача доданих ним же в обрані
 router.get('/favorites')
 // створити ендпоінт для видалення оголошення авторизованого користувача доданих цим же до обраних
-router.delete('/favorites/:noticeId')
+router.delete('/favorites/:noticeId', isValidNoticeId, autentication, ctrlWrapper(noticesCtrl.removeFromFavorite));
 // створити ендпоінт для додавання оголошень відповідно до обраної категорії
-router.post('/:category')
+router.post('/:category', validateBody)
 // створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
 router.get('/')
 // створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем 

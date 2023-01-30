@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const noticeSchema = new Schema({
+    title: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
