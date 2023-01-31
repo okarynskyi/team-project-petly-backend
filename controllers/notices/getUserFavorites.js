@@ -12,7 +12,7 @@ const getUserFavorites = async (req, res) => {
     const notices = await Notice.find();
 
     if (!notices) {
-        throw HttpError(400, 'No notices found')
+        throw HttpError(404, 'No notices found')
     }
 
     const favoriteNotices = notices.filter(notice => favorites.includes(notice._id));

@@ -1,9 +1,12 @@
 const { HttpError } = require('../../helpers');
 const { User } = require('../../models');
+const{uploadImgToCloudinary} = require('../../services/cloudinary')
 
 const userUpdate = async (req, res) => {
     
     const { _id: userId } = req.user;
+
+    const avatarURL = await uploadImgToCloudinary(req, 233, 233);
     
     const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body }, { new: true });
     
@@ -18,7 +21,7 @@ const userUpdate = async (req, res) => {
             city: user.city,
             phone: user.phone,
             birthday: user.birthday, 
-            avatarURL: user.avatarURL,
+            avatarURL,
             favorites: user.favorites
         }
     })
