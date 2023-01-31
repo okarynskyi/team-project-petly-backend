@@ -39,10 +39,17 @@ router.delete(
   ctrlWrapper(noticesCtrl.removeFromFavorite)
 );
 
+router.delete(
+  "/:noticeId",
+  isValidNoticeId,
+  autentication,
+  ctrlWrapper(noticesCtrl.removeUserNotice)
+);
+
 router.post(
   "/",
   autentication,
-  upload.single("petsPhotoURL"),
+  upload.single("imageURL"),
   validateBody(noticeSchema),
   ctrlWrapper(noticesCtrl.create)
 );

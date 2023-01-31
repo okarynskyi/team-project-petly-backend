@@ -4,6 +4,7 @@ const create = require("./create");
 const getByCategory = require("./getByCategory");
 const getById = require("./getById");
 const getUsersNotices = require("./getUsersNotices");
+const removeUserNotice = require("./removeUserNotice");
 
 module.exports = {
   addToFavorite,
@@ -12,5 +13,5 @@ module.exports = {
   getByCategory,
   getById,
   getUsersNotices,
-
+  removeUserNotice,
 };
