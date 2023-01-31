@@ -224,6 +224,88 @@
           }
         }
       }
+    },
+    "/api/users/pets": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add user pet",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Object of user pet",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserPetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddUserPetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users/pets/:petId": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete user pet",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "petId",
+            "required": "true",
+            "type": "string",
+            "description": "Pet's id"
+          }
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Pet deleted",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          },
+          "404": {
+            "description": "Wrong Pet",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -412,6 +494,89 @@
             "type": "array",
             "description": "User's phone",
             "example": []
+          }
+        }
+      },
+      "AddUserPetRequest": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Rex"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "2010-02-22"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "German Shepherd"
+          },
+          "petsPhotoURL": {
+            "type": "string",
+            "description": "User's photo"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Comments"
+          }
+        }
+      },
+      "AddUserPetResponse": {
+        "type": "object",
+        "properties": {
+          "newPet": {
+            "_id": {
+              "type": "string",
+              "description": "User's pet id",
+              "example": "63d6364d0ae399c680890db1"
+            },
+            "name": {
+              "type": "string",
+              "description": "Pet's name",
+              "example": "Rex"
+            },
+            "birthday": {
+              "type": "string",
+              "description": "Pet's birthday",
+              "example": "2004-01-01T00:00:00.000Z"
+            },
+            "breed": {
+              "type": "string",
+              "description": "Pet's breed",
+              "example": "German Shepherd"
+            },
+            "petsPhotoURL": {
+              "type": "string",
+              "description": "User's photo"
+            },
+            "comments": {
+              "type": "string",
+              "description": "Comments",
+              "example": "MegaPuperSuperSobaken"
+            },
+            "owner": {
+              "type": "string",
+              "description": "User's email",
+              "example": "63d597e17ca822bddfedb390"
+            }
+          }
+        },
+        "example": {
+          "newPet": {
+            "_id": "63d6364d0ae399c680890db1",
+            "name": "Rex",
+            "birthday": "2004-01-01T00:00:00.000Z",
+            "breed": "German Shepherd",
+            "petsPhotoURL": null,
+            "comments": "MegaPuperSuperSobaken",
+            "owner": "63d597e17ca822bddfedb390"
           }
         }
       }
