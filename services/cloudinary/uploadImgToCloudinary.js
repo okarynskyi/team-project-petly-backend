@@ -15,7 +15,7 @@ const uploadImgToCloudinary = async (req, w, h) => {
 
         fs.unlinkSync(path)
 
-        let id = newURL.id
+        const id = newURL.id
 
        imageURL = await cloudinary.createImageTag(id, w, h)
     }
