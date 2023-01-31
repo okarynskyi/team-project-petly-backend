@@ -28,7 +28,9 @@ router.post(
   ctrlWrapper(noticesCtrl.addToFavorite)
 );
 // створити ендпоінт для отримання оголошень авторизованого користувача доданих ним же в обрані
-router.get("/favorites");
+
+router.get("/user/favorites", autentication, ctrlWrapper(noticesCtrl.getUserFavorites));
+// створити ендпоінт для видалення оголошення авторизованого користувача доданих цим же до обраних
 
 router.delete(
   "/favorites/:noticeId",
