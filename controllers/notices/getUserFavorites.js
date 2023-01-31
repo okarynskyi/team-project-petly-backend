@@ -4,9 +4,10 @@ const { HttpError } = require('../../helpers');
 
 const getUserFavorites = async (req, res) => {
 
-    const { _id, name, email } = req.user;
+    const { _id, name, email} = req.user;
+    console.log(_id)
     
-    const { favotites } = await User.findOne({ _id });
+    const { favorites } = await User.findOne({ _id });
 
     const notices = await Notice.find();
 
@@ -14,7 +15,7 @@ const getUserFavorites = async (req, res) => {
         throw HttpError(400, 'No notices found')
     }
 
-    const favoriteNotices = notices.filter(notice => favotites.includes(notice._id));
+    const favoriteNotices = notices.filter(notice => favorites.includes(notice._id));
 
     if (favoriteNotices.length === 0) {
         return (
