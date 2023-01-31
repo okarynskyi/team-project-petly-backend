@@ -28,7 +28,7 @@ exports.createImageTag = async (publicId, w, h) => {
 
     let imageTag = cloudinary.image(publicId, {
       transformation: [
-        { width: w, height: h},
+        { width: w, height: h, gravity: "auto", crop: "fill"},
       ],
     });
 
