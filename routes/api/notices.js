@@ -7,12 +7,17 @@ const {
   isValidNoticeId,
   autentication,
   upload,
+  isValidCategory,
 } = require("../../middlewares");
 const { noticeSchema } = require("../../schemas");
 
 const router = express.Router();
 // створити ендпоінт для отримання оголошень по категоріям
-router.get("/:category");
+router.get(
+  "/:category",
+  isValidCategory,
+  ctrlWrapper(noticesCtrl.getByCategory)
+);
 // створити ендпоінт для отримання одного оголошення
 router.get("/:noticeId");
 // створити ендпоінт для додавання оголошення до обраних
