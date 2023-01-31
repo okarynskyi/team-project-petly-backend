@@ -45,7 +45,7 @@ router.post(
   ctrlWrapper(noticesCtrl.create)
 );
 // створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
-router.get("/");
+router.get("/", autentication, ctrlWrapper(noticesCtrl.getUsersNotices));
 // створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
 router.delete("/:noticeId");
 
