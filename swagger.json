@@ -1,0 +1,592 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.1",
+    "title": "Petly API docs",
+    "description": "Shows API requests to the server TEAM-PROJECT-PETLY-BACKEND"
+  },
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "servers": [
+    {
+      "url": "https://petly-backend-v11f.onrender.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    },
+    {
+      "name": "Users",
+      "description": "Users endpoints"
+    },
+    {
+      "name": "Notices",
+      "description": "Notices endpoints"
+    },
+    {
+      "name": "News",
+      "description": "News endpoints"
+    },
+    {
+      "name": "Friends",
+      "description": "Friends endpoints"
+    }
+  ],
+  "paths": {
+    "/api/auth/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "User registration",
+        "parameters": [],
+        "requestBody": {
+          "description": "Object of registration",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "User sign in",
+        "parameters": [],
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/": {
+      "patch": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Update user data",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Update user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          },
+          "404": {
+            "description": "Wrong User",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/current": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get current user",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "204": {
+            "description": "No content",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users/pets": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add user pet",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Object of user pet",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserPetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddUserPetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users/pets/:petId": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete user pet",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "petId",
+            "required": "true",
+            "type": "string",
+            "description": "Pet's id"
+          }
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Pet deleted",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          },
+          "404": {
+            "description": "Wrong Pet",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "name",
+          "city",
+          "phone"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Anna"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Kyiv"
+          },
+          "region": {
+            "type": "string",
+            "description": "User's region",
+            "example": "Kyiv"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380000000000"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "User's token"
+          },
+          "user": {
+            "name": {
+              "type": "string",
+              "description": "User's name",
+              "example": "Anna"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email"
+            }
+          }
+        },
+        "example": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDUzMzI4ZTkyNmUzNzBkNGYwMTY3YSIsImlhdCI6MTY3NDkxNjY0OCwiZXhwIjoxNjc0OTk5NDQ4fQ.T5GjdzWA58e66QFCQaC4efICjn1SP-lG6u-DHs9_-LI",
+          "user": {
+            "name": "Anna",
+            "email": "user@example.com"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "User's token"
+          },
+          "user": {
+            "name": {
+              "type": "string",
+              "description": "User's name",
+              "example": "Anna"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email"
+            }
+          }
+        },
+        "example": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDUzMzI4ZTkyNmUzNzBkNGYwMTY3YSIsImlhdCI6MTY3NDkxNjY0OCwiZXhwIjoxNjc0OTk5NDQ4fQ.T5GjdzWA58e66QFCQaC4efICjn1SP-lG6u-DHs9_-LI",
+          "user": {
+            "name": "Anna",
+            "email": "user@example.com"
+          }
+        }
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Anna"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Kyiv"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380000000000"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's region",
+            "example": "2023-01-01T16:45:00.000Z"
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Anna"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Kyiv"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380000000000"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's region",
+            "example": "2023-01-01T16:45:00.000Z"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's phone",
+            "example": null
+          },
+          "favorites": {
+            "type": "array",
+            "description": "User's phone",
+            "example": []
+          }
+        }
+      },
+      "AddUserPetRequest": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Rex"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "2010-02-22"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "German Shepherd"
+          },
+          "petsPhotoURL": {
+            "type": "string",
+            "description": "User's photo"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Comments"
+          }
+        }
+      },
+      "AddUserPetResponse": {
+        "type": "object",
+        "properties": {
+          "newPet": {
+            "_id": {
+              "type": "string",
+              "description": "User's pet id",
+              "example": "63d6364d0ae399c680890db1"
+            },
+            "name": {
+              "type": "string",
+              "description": "Pet's name",
+              "example": "Rex"
+            },
+            "birthday": {
+              "type": "string",
+              "description": "Pet's birthday",
+              "example": "2004-01-01T00:00:00.000Z"
+            },
+            "breed": {
+              "type": "string",
+              "description": "Pet's breed",
+              "example": "German Shepherd"
+            },
+            "petsPhotoURL": {
+              "type": "string",
+              "description": "User's photo"
+            },
+            "comments": {
+              "type": "string",
+              "description": "Comments",
+              "example": "MegaPuperSuperSobaken"
+            },
+            "owner": {
+              "type": "string",
+              "description": "User's email",
+              "example": "63d597e17ca822bddfedb390"
+            }
+          }
+        },
+        "example": {
+          "newPet": {
+            "_id": "63d6364d0ae399c680890db1",
+            "name": "Rex",
+            "birthday": "2004-01-01T00:00:00.000Z",
+            "breed": "German Shepherd",
+            "petsPhotoURL": null,
+            "comments": "MegaPuperSuperSobaken",
+            "owner": "63d597e17ca822bddfedb390"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
