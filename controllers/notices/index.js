@@ -3,7 +3,7 @@ const removeFromFavorite = require("./removeFromFavorite");
 const create = require("./create");
 const getByCategory = require("./getByCategory");
 const getById = require("./getById");
-const getUserFavorites = require('./getUserFavorites');
+const getUsersNotices = require("./getUsersNotices");
 
 module.exports = {
   addToFavorite,
@@ -11,5 +11,6 @@ module.exports = {
   create,
   getByCategory,
   getById,
-  getUserFavorites,
+  getUsersNotices,
+
 };
