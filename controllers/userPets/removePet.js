@@ -8,7 +8,7 @@ const removePet = async (req, res) => {
   const result = await UserPet.findOneAndRemove({ _id: petId, owner });
   
   if (!result) {
-    throw HttpError(404);
+    throw HttpError(404, "No pets found");
   }
   
   res.status(200).json({ message: "Pet deleted" });

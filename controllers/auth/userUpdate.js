@@ -6,7 +6,7 @@ const userUpdate = async (req, res) => {
     
     const { _id: userId } = req.user;
 
-    const avatarURL = await uploadImgToCloudinary(req, 161, 161)
+    const avatarURL = await uploadImgToCloudinary(req, 233, 233)
     
     const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body, avatarURL }, { new: true });
     

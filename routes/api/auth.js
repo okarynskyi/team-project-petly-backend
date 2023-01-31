@@ -15,6 +15,6 @@ router.post('/logout', autentication, ctrlWrapper(authCtrl.logout));
 
 router.get('/current', autentication, ctrlWrapper(authCtrl.getCurrentUser));
  
-router.patch('/', autentication, upload.single('avatarURL'), validateBody(userUpdateSchema), ctrlWrapper(authCtrl.userUpdate));
+router.patch('/', autentication, upload.single('imageURL'), validateBody(userUpdateSchema), ctrlWrapper(authCtrl.userUpdate));
  
 module.exports = router;

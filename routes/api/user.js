@@ -12,7 +12,7 @@ router.get("/", autentication, ctrlWrapper(userCtrl.getUserData));
 
 router.get('/pets', autentication, ctrlWrapper(petCtrl.listPets));
 
-router.post('/pets', autentication, upload.single("petsPhotoURL"), validateBody(userPetSchema), ctrlWrapper(petCtrl.addPet));
+router.post('/pets', autentication, upload.single("imageURL"), validateBody(userPetSchema), ctrlWrapper(petCtrl.addPet));
 
 router.delete('/pets/:petId', autentication, isValidPetId, ctrlWrapper(petCtrl.removePet));
 
