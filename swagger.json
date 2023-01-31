@@ -48,11 +48,6 @@
         ],
         "summary": "User registration",
         "parameters": [],
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
         "requestBody": {
           "description": "Object of registration",
           "required": true,
@@ -121,6 +116,54 @@
           },
           "401": {
             "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/": {
+      "patch": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Update user data",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Update user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          },
+          "404": {
+            "description": "Wrong User",
             "content": {}
           }
         }
@@ -243,6 +286,76 @@
           "user": {
             "name": "Anna",
             "email": "user@example.com"
+          }
+        }
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Anna"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Kyiv"
+          },
+          "region": {
+            "type": "string",
+            "description": "User's region",
+            "example": "Kyiv"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380000000000"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's region",
+            "example": "2023-01-01T16:45:00.000Z"
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Anna"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Kyiv"
+          },
+          "region": {
+            "type": "string",
+            "description": "User's region",
+            "example": "Kyiv"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380000000000"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's region",
+            "example": "2023-01-01T16:45:00.000Z"
           }
         }
       }
