@@ -1,11 +1,14 @@
 const { HttpError } = require('../../helpers');
 const { User } = require('../../models');
+const { uploadImgToCloudinary } = require("../../services/cloudinary");
 
 const userUpdate = async (req, res) => {
     
     const { _id: userId } = req.user;
+
+    const avatarURL = await uploadImgToCloudinary(req, 161, 161)
     
-    const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body }, { new: true });
+    const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body, avatarURL }, { new: true });
     
     if (!user) {
         throw HttpError(404)
@@ -18,7 +21,7 @@ const userUpdate = async (req, res) => {
             city: user.city,
             phone: user.phone,
             birthday: user.birthday, 
-            avatarURL: user.avatarURL,
+            avatarURL,
             favorites: user.favorites
         }
     })
