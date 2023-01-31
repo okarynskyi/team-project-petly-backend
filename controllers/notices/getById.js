@@ -10,9 +10,7 @@ const getById = async (req, res) => {
     throw HttpError(404);
   }
 
-  res.json({
-    result,
-  });
+  res.json(result);
 };
 
 module.exports = getById;

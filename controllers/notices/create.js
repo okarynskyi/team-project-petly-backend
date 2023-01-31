@@ -12,7 +12,7 @@ const create = async (req, res) => {
     throw HttpError(409, `Notise "${adopStatus}" already exist for ${name}`);
   }
 
-  const avatarURL = await uploadImgToCloudinary(req);
+  const avatarURL = await uploadImgToCloudinary(req, 336, 336);
 
   const owner = { _id, email, phone };
 

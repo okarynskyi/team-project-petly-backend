@@ -9,9 +9,7 @@ const getByCategory = async (req, res) => {
   if (notices.length === 0) {
     throw HttpError(404, `No notices in ${category} category`);
   }
-  res.json({
-    notices,
-  });
+  res.json(notices);
 };
 
 module.exports = getByCategory;
