@@ -10,7 +10,7 @@ const addPet = async (req, res) => {
     const { _id: owner } = req.user;
 
 
-    const result = await UserPet.create({ ...req.body, owner });
+    const result = await UserPet.create({ ...req.body, petsPhotoURL:imageURL, owner });
 
     res.status(201).json({
         newPet: {

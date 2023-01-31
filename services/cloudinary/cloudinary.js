@@ -24,13 +24,14 @@ exports.uploads = (file, folder) => {
     })
 }
 
-exports.createImageTag = async (publicId, w, h) => {
+exports.createImageUrl = async (publicId, w, h) => {
 
-    let imageTag = cloudinary.image(publicId, {
+    const imageTag = cloudinary.url(publicId, {
       transformation: [
-        { width: w, height: h},
+        { width: w, height: h, gravity: "auto", crop: "fill"},
       ],
     });
+    
 
     return imageTag;
 };
