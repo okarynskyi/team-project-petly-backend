@@ -12,4 +12,5 @@ module.exports = {
   getByCategory,
   getById,
   getUsersNotices,
+
 };
