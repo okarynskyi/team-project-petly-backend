@@ -215,7 +215,7 @@
         "requestBody": {},
         "responses": {
           "204": {
-            "description": "User logout",
+            "description": "No content",
             "content": {}
           },
           "401": {
