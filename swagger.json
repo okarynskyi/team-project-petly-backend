@@ -41,7 +41,7 @@
     }
   ],
   "paths": {
-    "/auth/auth/signup": {
+    "/api/auth/signup": {
       "post": {
         "tags": [
           "Auth"
@@ -307,11 +307,6 @@
             "description": "User's city",
             "example": "Kyiv"
           },
-          "region": {
-            "type": "string",
-            "description": "User's region",
-            "example": "Kyiv"
-          },
           "phone": {
             "type": "string",
             "description": "User's phone",
@@ -342,11 +337,6 @@
             "description": "User's city",
             "example": "Kyiv"
           },
-          "region": {
-            "type": "string",
-            "description": "User's region",
-            "example": "Kyiv"
-          },
           "phone": {
             "type": "string",
             "description": "User's phone",
@@ -356,6 +346,16 @@
             "type": "string",
             "description": "User's region",
             "example": "2023-01-01T16:45:00.000Z"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's phone",
+            "example": null
+          },
+          "favorites": {
+            "type": "array",
+            "description": "User's phone",
+            "example": []
           }
         }
       }
