@@ -11,7 +11,7 @@ const notiseSchema = Joi.object({
     .trim(true)
     .min(2)
     .max(16)
-    .regex(/^[a-zA-Z]+$/)
+    .regex(/^[a-zA-Z\s]*$/)
     .required(),
   birthday: Joi.date().required(),
   breed: Joi.string()
@@ -26,7 +26,7 @@ const notiseSchema = Joi.object({
     .required(),
   sex: Joi.string().valid("male", "female").required(),
   comments: Joi.string().min(8).max(120).required(),
-  avatarURL: Joi.string(),
+  // avatarURL: Joi.string(),
   adopStatus: Joi.string()
     .valid("lost/found", "sell", "in good hands")
     .required(),
