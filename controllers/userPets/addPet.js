@@ -4,7 +4,7 @@ const { uploadImgToCloudinary } = require("../../services/cloudinary");
 
 const addPet = async (req, res) => {
 
-    const imageURL = await uploadImgToCloudinary(req, 300, 300)
+    const imageURL = await uploadImgToCloudinary(req, 161, 161)
     
 
     const { _id: owner } = req.user;
