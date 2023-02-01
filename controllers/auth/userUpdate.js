@@ -6,6 +6,22 @@ const userUpdate = async (req, res) => {
     
     const { _id: userId } = req.user;
 
+    if (!req.file) {
+        const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body }, { new: true });
+        res.status(200).json({
+            user: {
+                name: user.name,
+                email: user.email,
+                city: user.city,
+                phone: user.phone,
+                birthday: user.birthday, 
+                favorites: user.favorites
+            }
+        })
+        
+        return
+    }
+
     const avatarURL = await uploadImgToCloudinary(req, 233, 233)
     
     const user = await User.findByIdAndUpdate({ _id: userId }, { ...req.body, avatarURL }, { new: true });
