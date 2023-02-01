@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "title": "Petly API docs",
     "description": "Shows API requests to the server TEAM-PROJECT-PETLY-BACKEND"
   },
@@ -268,6 +268,35 @@
             "content": {}
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all user's pets",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPetsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
       }
     },
     "/api/users/pets/{petId}": {
@@ -301,6 +330,89 @@
           },
           "404": {
             "description": "Wrong Pet",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all user's data",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDataResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Wrong Email or Password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/news": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "Get news",
+        "parameters": [],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Wrong address",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/friends": {
+      "get": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Get friends",
+        "parameters": [],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Wrong address",
             "content": {}
           }
         }
@@ -577,6 +689,128 @@
             "comments": "MegaPuperSuperSobaken",
             "owner": "63d597e17ca822bddfedb390"
           }
+        }
+      },
+      "UserPetsResponse": {
+        "type": "object",
+        "properties": {
+          "userPets": []
+        },
+        "example": {
+          "userPets": [
+            {
+              "_id": "63d6364d0ae399c680890db1",
+              "name": "Rex",
+              "birthday": "2004-01-01T00:00:00.000Z",
+              "breed": "German Shepherd",
+              "petsPhotoURL": null,
+              "comments": "MegaPuperSuperSobaken",
+              "owner": "63d597e17ca822bddfedb390"
+            }
+          ]
+        }
+      },
+      "UserDataResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email"
+            },
+            "name": {
+              "type": "string",
+              "description": "User's name",
+              "example": "Anna"
+            },
+            "city": {
+              "type": "string",
+              "description": "User's city",
+              "example": "Kyiv"
+            },
+            "phone": {
+              "type": "string",
+              "description": "User's phone",
+              "example": "+380000000000"
+            },
+            "birthday": {
+              "type": "string",
+              "description": "User's region",
+              "example": "2023-01-01T16:45:00.000Z"
+            },
+            "avatarURL": {
+              "type": "string",
+              "description": "User's phone",
+              "example": null
+            },
+            "favorites": {
+              "type": "array",
+              "description": "User's phone",
+              "example": []
+            }
+          },
+          "userPets": []
+        },
+        "example": {
+          "user": {
+            "name": "Anna",
+            "email": "user@example.com",
+            "city": "Kyiv",
+            "phone": "+380000000000",
+            "birthday": "2023-01-01T16:45:00.000Z",
+            "avatarURL": null,
+            "favorites": []
+          },
+          "userPets": [
+            {
+              "_id": "63d6364d0ae399c680890db1",
+              "name": "Rex",
+              "birthday": "2004-01-01T00:00:00.000Z",
+              "breed": "German Shepherd",
+              "petsPhotoURL": null,
+              "comments": "MegaPuperSuperSobaken",
+              "owner": "63d597e17ca822bddfedb390"
+            }
+          ]
+        }
+      },
+      "NewsResponse": {
+        "type": "object",
+        "properties": {
+          "news": []
+        },
+        "example": {
+          "news": [
+            {
+              "_id": "63d57fe922b99140810fa924",
+              "title": "В День ветеринара в столиці пройде безкоштовний тренінг з надання першої допомоги тваринам",
+              "url": "https://www.kmlvm.com.ua/v-den-veterynara-v-stolytsi-projde-bezkoshtovnyj-trening-z-nadannya-pershoyi-dopomogy-tvarynam/",
+              "description": "В неділю, 14 серпня...",
+              "date": "2022-08-12T00:00:00.000Z"
+            }
+          ]
+        }
+      },
+      "FriendsResponse": {
+        "type": "object",
+        "properties": {
+          "friends": []
+        },
+        "example": {
+          "friends": [
+            {
+              "_id": "63d57fe922b99140810fa924",
+              "title": "Притулок для бездомних тварин 'Сіріус'",
+              "url": "https://dogcat.com.ua",
+              "addressUrl": "https://goo.gl/maps/iq8NXEUf31EAQCzc6",
+              "imageUrl": "https://storage.googleapis.com/kidslikev2_bucket/pets-support/images/sponsors/frame_287.png",
+              "address": "Fedorivka, Kyiv Oblast, Ukraine, 07372",
+              "workDays": [],
+              "phone": "+380000000000",
+              "email": "user@example.com"
+            }
+          ]
         }
       }
     },
