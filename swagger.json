@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "title": "Petly API docs",
     "description": "Shows API requests to the server TEAM-PROJECT-PETLY-BACKEND"
   },
@@ -270,7 +270,7 @@
         }
       }
     },
-    "/api/users/pets/:petId": {
+    "/api/users/pets/{petId}": {
       "delete": {
         "tags": [
           "Users"
@@ -280,8 +280,7 @@
           {
             "in": "path",
             "name": "petId",
-            "required": "true",
-            "type": "string",
+            "required": true,
             "description": "Pet's id"
           }
         ],
