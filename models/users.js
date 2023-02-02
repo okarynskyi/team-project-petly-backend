@@ -14,12 +14,9 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Name is required']
     },
-    city: {
+    location: {
         type: String,
-        required: [true, 'City is required']
-    },
-    region: {
-        type: String,
+        required: [true, 'Location is required']
     },
     phone: {
         type: String,
