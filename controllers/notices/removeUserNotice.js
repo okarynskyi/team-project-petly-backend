@@ -10,7 +10,7 @@ const { _id } = req.user;
   if (notices.length === 0) {
     throw HttpError(404, "No notices found");
   }
-  res.status(200).json({ message: "Notice deleted" });
+  res.status(204).json({ message: "Notice deleted" });
 
 }
 
