@@ -12,7 +12,7 @@ const userUpdate = async (req, res) => {
             user: {
                 name: user.name,
                 email: user.email,
-                city: user.city,
+                location: user.location,
                 phone: user.phone,
                 birthday: user.birthday, 
                 favorites: user.favorites

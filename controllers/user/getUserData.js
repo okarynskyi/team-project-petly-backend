@@ -12,7 +12,7 @@ const getUserData = async (req, res) => {
         user: {
             name: user.name,
             email: user.email,
-            city: user.city,
+            location: user.location,
             phone: user.phone,
             birthday: user.birthday,
             avatarURL: user.avatarURL,
