@@ -1,12 +1,12 @@
 const getCurrentUser = (req, res) => {
 
-    const { email, name, city, phone, birthday, avatarURL, favorites } = req.user;
+    const { email, name, location, phone, birthday, avatarURL, favorites } = req.user;
     
     res.json({
         user: {
             email,
             name,
-            city,
+            location,
             phone,
             birthday,
             avatarURL,
