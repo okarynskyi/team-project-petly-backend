@@ -10,6 +10,7 @@ const getUserData = async (req, res) => {
 
     res.status(200).json({
         user: {
+            id: user._id,
             name: user.name,
             email: user.email,
             location: user.location,
