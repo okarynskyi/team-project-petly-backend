@@ -30,9 +30,6 @@ const userSchema = new Schema({
         type: String,
         default: null
     },
-    favorites: { // масив з id тваринок
-        type: Array
-    },
     token: {
         type: String,
         default: null,

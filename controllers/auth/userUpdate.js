@@ -15,7 +15,6 @@ const userUpdate = async (req, res) => {
                 location: user.location,
                 phone: user.phone,
                 birthday: user.birthday, 
-                favorites: user.favorites
             }
         })
         
@@ -37,8 +36,7 @@ const userUpdate = async (req, res) => {
             city: user.city,
             phone: user.phone,
             birthday: user.birthday, 
-            avatarURL,
-            favorites: user.favorites
+            avatarURL
         }
     })
     

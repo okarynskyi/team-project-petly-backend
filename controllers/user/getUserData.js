@@ -16,7 +16,6 @@ const getUserData = async (req, res) => {
             phone: user.phone,
             birthday: user.birthday,
             avatarURL: user.avatarURL,
-            favorites: user.favorites
         },
         userPets
     });
