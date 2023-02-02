@@ -7,7 +7,7 @@ const petShema = new Schema({
     },
     birthday: {
         type: Date,
-        default: null,
+        required: [true, 'Birthday is required'],
     },
     breed: {
         type: String,
@@ -15,10 +15,11 @@ const petShema = new Schema({
     },
     petsPhotoURL: {
         type: String,
-        default: null
+        default: null,
     },
     comments: {
         type: String,
+        required: [true, 'petsPhotoURL is required'],
     },
     owner: {
     type: Schema.Types.ObjectId,

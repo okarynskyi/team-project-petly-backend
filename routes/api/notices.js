@@ -39,12 +39,6 @@ router.delete(
   ctrlWrapper(noticesCtrl.removeFromFavorite)
 );
 
-router.delete(
-  "/:noticeId",
-  isValidNoticeId,
-  autentication,
-  ctrlWrapper(noticesCtrl.removeUserNotice)
-);
 
 router.post(
   "/",
@@ -56,6 +50,11 @@ router.post(
 // створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
 router.get("/", autentication, ctrlWrapper(noticesCtrl.getUsersNotices));
 // створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
-router.delete("/:noticeId");
+router.delete(
+  "/:noticeId",
+  isValidNoticeId,
+  autentication,
+  ctrlWrapper(noticesCtrl.removeUserNotice)
+);
 
 module.exports = router;
