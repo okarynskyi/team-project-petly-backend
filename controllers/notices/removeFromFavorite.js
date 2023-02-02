@@ -17,7 +17,7 @@ const removeFromFavorite = async (req, res) => {
 
     const user = await User.findByIdAndUpdate({ _id }, { favorites }, { new: true });
 
-    res.status(201).json({
+    res.status(200).json({
         user: {
             name: user.name,
             email: user.email,
