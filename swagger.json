@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "title": "Petly API docs",
     "description": "Shows API requests to the server TEAM-PROJECT-PETLY-BACKEND"
   },
@@ -772,26 +772,28 @@
         "properties": {
           "token": {
             "type": "string",
-            "description": "User's token"
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDUzMzI4ZTkyNmUzNzBkNGYwMTY3YSIsImlhdCI6MTY3NDkxNjY0OCwiZXhwIjoxNjc0OTk5NDQ4fQ.T5GjdzWA58e66QFCQaC4efICjn1SP-lG6u-DHs9_-LI"
           },
           "user": {
-            "name": {
-              "type": "string",
-              "description": "User's name",
-              "example": "Anna"
-            },
-            "email": {
-              "type": "string",
-              "description": "User's email",
-              "format": "email"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "User's id",
+                "example": "63d6364d0ae399c680890db1"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Anna"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              }
             }
-          }
-        },
-        "example": {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDUzMzI4ZTkyNmUzNzBkNGYwMTY3YSIsImlhdCI6MTY3NDkxNjY0OCwiZXhwIjoxNjc0OTk5NDQ4fQ.T5GjdzWA58e66QFCQaC4efICjn1SP-lG6u-DHs9_-LI",
-          "user": {
-            "name": "Anna",
-            "email": "user@example.com"
           }
         }
       },
@@ -819,96 +821,93 @@
         "properties": {
           "token": {
             "type": "string",
-            "description": "User's token"
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDUzMzI4ZTkyNmUzNzBkNGYwMTY3YSIsImlhdCI6MTY3NDkxNjY0OCwiZXhwIjoxNjc0OTk5NDQ4fQ.T5GjdzWA58e66QFCQaC4efICjn1SP-lG6u-DHs9_-LI"
           },
           "user": {
-            "name": {
-              "type": "string",
-              "description": "User's name",
-              "example": "Anna"
-            },
-            "email": {
-              "type": "string",
-              "description": "User's email",
-              "format": "email"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "User's id",
+                "example": "63d6364d0ae399c680890db1"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Anna"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              }
             }
-          }
-        },
-        "example": {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDUzMzI4ZTkyNmUzNzBkNGYwMTY3YSIsImlhdCI6MTY3NDkxNjY0OCwiZXhwIjoxNjc0OTk5NDQ4fQ.T5GjdzWA58e66QFCQaC4efICjn1SP-lG6u-DHs9_-LI",
-          "user": {
-            "name": "Anna",
-            "email": "user@example.com"
           }
         }
       },
       "UpdateUserRequest": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
           "name": {
             "type": "string",
             "description": "User's name",
             "example": "Anna"
           },
-          "location": {
+          "email": {
             "type": "string",
-            "description": "User's location",
-            "example": "Kyiv, Kyiv"
+            "description": "User's email",
+            "format": "email"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's region",
+            "example": "2023-01-01T16:45:00.000Z"
           },
           "phone": {
             "type": "string",
             "description": "User's phone",
             "example": "+380000000000"
           },
-          "birthday": {
+          "location": {
             "type": "string",
-            "description": "User's region",
-            "example": "2023-01-01T16:45:00.000Z"
+            "description": "User's location",
+            "example": "Kyiv, Kyiv"
           }
         }
       },
       "UpdateUserResponse": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's name",
-            "example": "Anna"
-          },
-          "location": {
-            "type": "string",
-            "description": "User's location",
-            "example": "Kyiv, Kyiv"
-          },
-          "phone": {
-            "type": "string",
-            "description": "User's phone",
-            "example": "+380000000000"
-          },
-          "birthday": {
-            "type": "string",
-            "description": "User's region",
-            "example": "2023-01-01T16:45:00.000Z"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "User's phone",
-            "example": null
-          },
-          "favorites": {
-            "type": "array",
-            "description": "User's phone",
-            "example": []
+          "user": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Anna"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "location": {
+                "type": "string",
+                "description": "User's location",
+                "example": "Kyiv, Kyiv"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's phone",
+                "example": "+380000000000"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "User's birthday",
+                "example": "2023-01-01T16:45:00.000Z"
+              }
+            }
           }
         }
       },
@@ -947,51 +946,43 @@
         "type": "object",
         "properties": {
           "newPet": {
-            "_id": {
-              "type": "string",
-              "description": "User's pet id",
-              "example": "63d6364d0ae399c680890db1"
-            },
-            "name": {
-              "type": "string",
-              "description": "Pet's name",
-              "example": "Rex"
-            },
-            "birthday": {
-              "type": "string",
-              "description": "Pet's birthday",
-              "example": "2004-01-01T00:00:00.000Z"
-            },
-            "breed": {
-              "type": "string",
-              "description": "Pet's breed",
-              "example": "German Shepherd"
-            },
-            "petsPhotoURL": {
-              "type": "string",
-              "description": "User's photo"
-            },
-            "comments": {
-              "type": "string",
-              "description": "Comments",
-              "example": "MegaPuperSuperSobaken"
-            },
-            "owner": {
-              "type": "string",
-              "description": "User's email",
-              "example": "63d597e17ca822bddfedb390"
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User's pet id",
+                "example": "63d6364d0ae399c680890db1"
+              },
+              "name": {
+                "type": "string",
+                "description": "Pet's name",
+                "example": "Rex"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "Pet's birthday",
+                "example": "2004-01-01T00:00:00.000Z"
+              },
+              "breed": {
+                "type": "string",
+                "description": "Pet's breed",
+                "example": "German Shepherd"
+              },
+              "petsPhotoURL": {
+                "type": "string",
+                "description": "User's photo"
+              },
+              "comments": {
+                "type": "string",
+                "description": "Comments",
+                "example": "MegaPuperSuperSobaken"
+              },
+              "owner": {
+                "type": "string",
+                "description": "User's email",
+                "example": "63d597e17ca822bddfedb390"
+              }
             }
-          }
-        },
-        "example": {
-          "newPet": {
-            "_id": "63d6364d0ae399c680890db1",
-            "name": "Rex",
-            "birthday": "2004-01-01T00:00:00.000Z",
-            "breed": "German Shepherd",
-            "petsPhotoURL": null,
-            "comments": "MegaPuperSuperSobaken",
-            "owner": "63d597e17ca822bddfedb390"
           }
         }
       },
@@ -1142,6 +1133,11 @@
                 }
               }
             },
+            "favorites": {
+              "type": "array",
+              "description": "User's phone",
+              "example": []
+            },
             "_id": {
               "type": "string",
               "description": "Notice id",
@@ -1288,6 +1284,11 @@
             "description": "Notice price",
             "example": 1
           },
+          "favorites": {
+            "type": "array",
+            "description": "User's phone",
+            "example": []
+          },
           "createdAt": {
             "type": "string",
             "description": "Notice createdAt",
@@ -1304,17 +1305,17 @@
         "type": "object",
         "properties": {
           "user": {
+            "type": "string",
+            "description": "User's id",
+            "example": "63d83eed283db645e170fd5f"
+          },
+          "notice": {
             "type": "object",
             "properties": {
-              "name": {
+              "id": {
                 "type": "string",
-                "description": "User's name",
-                "example": "Anna"
-              },
-              "email": {
-                "type": "string",
-                "description": "User's email",
-                "format": "email"
+                "description": "User's id",
+                "example": "63d83eed283db645e170fd5f"
               },
               "favorites": {
                 "type": "array",
@@ -1330,17 +1331,17 @@
         "type": "object",
         "properties": {
           "user": {
+            "type": "string",
+            "description": "User's id",
+            "example": "63d83eed283db645e170fd5f"
+          },
+          "notice": {
             "type": "object",
             "properties": {
-              "name": {
+              "id": {
                 "type": "string",
-                "description": "User's name",
-                "example": "Anna"
-              },
-              "email": {
-                "type": "string",
-                "description": "User's email",
-                "format": "email"
+                "description": "User's id",
+                "example": "63d83eed283db645e170fd5f"
               },
               "favorites": {
                 "type": "array",
@@ -1355,25 +1356,102 @@
       "AllFavoritesResponse": {
         "type": "object",
         "properties": {
-          "user": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "User's name",
-                "example": "Anna"
-              },
-              "email": {
-                "type": "string",
-                "description": "User's email",
-                "format": "email"
-              }
-            }
-          },
-          "favorites": {
+          "notices": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "User's id",
+                      "example": "63d83eed283db645e170fd5f"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "User's email",
+                      "format": "email"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "description": "User's phone",
+                      "example": "+380000000000"
+                    }
+                  }
+                },
+                "_id": {
+                  "type": "string",
+                  "description": "Notice id",
+                  "example": "63d83eed283db645e170fd5f"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Notice title",
+                  "example": "Mursik for sale"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Pet's name",
+                  "example": "Mursik"
+                },
+                "birthday": {
+                  "type": "string",
+                  "description": "Pet's birthday",
+                  "example": "2002-12-20T22:00:00.000Z"
+                },
+                "breed": {
+                  "type": "string",
+                  "description": "Pet's breed",
+                  "example": "German sheppard"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Location",
+                  "example": "Kyiv, Kyiv"
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "Pet's sex",
+                  "example": "male"
+                },
+                "comments": {
+                  "type": "string",
+                  "description": "Notice comments",
+                  "example": "Mursik for sale"
+                },
+                "avatarURL": {
+                  "type": "string",
+                  "description": "Pet's avatar",
+                  "example": "https://"
+                },
+                "adopStatus": {
+                  "type": "string",
+                  "description": "Notice category",
+                  "example": "sell"
+                },
+                "price": {
+                  "type": "number",
+                  "description": "Notice price",
+                  "example": 1
+                },
+                "favorites": {
+                  "type": "array",
+                  "description": "User's phone",
+                  "example": []
+                },
+                "createdAt": {
+                  "type": "string",
+                  "description": "Notice createdAt",
+                  "example": "2023-01-30T22:04:29.984Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "description": "Notice updatedAt",
+                  "example": "2023-01-30T22:04:29.984Z"
+                }
+              }
             }
           }
         }
@@ -1494,6 +1572,11 @@
                 "description": "Notice price",
                 "example": 1
               },
+              "favorites": {
+                "type": "array",
+                "description": "User's phone",
+                "example": []
+              },
               "owner": {
                 "type": "object",
                 "properties": {
@@ -1612,6 +1695,11 @@
               "type": "number",
               "description": "Notice price",
               "example": 1
+            },
+            "favorites": {
+              "type": "array",
+              "description": "User's phone",
+              "example": []
             },
             "createdAt": {
               "type": "string",
