@@ -4,6 +4,7 @@ const noticeSchema = new Schema(
   {
     title: {
       type: String,
+      text: true,
       required: true,
     },
     name: {

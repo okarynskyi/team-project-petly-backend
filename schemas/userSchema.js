@@ -19,7 +19,7 @@ const userUpdateSchema = Joi.object({
     email: Joi.string().trim(true).min(10).max(63).email(),
     birthday: Joi.date(),
     phone: Joi.string().length(13).pattern(/^\+[1-9]{1}[0-9]{3,14}$/),
-    city: Joi.string()
+    location: Joi.string().regex(/[A-Z][a-z]*,\s[A-Z][a-z]*/)
 })
 
 module.exports = {
