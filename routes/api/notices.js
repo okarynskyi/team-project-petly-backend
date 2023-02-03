@@ -65,13 +65,6 @@ router.get("/",
   autentication,
   ctrlWrapper(noticesCtrl.getUsersNotices)
 );
-// створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
-router.delete(
-  "/:noticeId",
-  isValidNoticeId,
-  autentication,
-  ctrlWrapper(noticesCtrl.removeUserNotice)
-);
 
 router.get(
   "/",
