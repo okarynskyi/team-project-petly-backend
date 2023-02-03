@@ -9,7 +9,7 @@ const getNoticesByQuery = async (req, res) => {
     // category = ""lost-found", "sell", "in-good-hands""
     // query = "..."
 
-    const { _id: userId } = req?.user ?? "";
+    const userId  = req?.user?._id ?? '';
     console.log(userId)
     let searchOptions={};
 
