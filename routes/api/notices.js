@@ -44,6 +44,7 @@ router.delete(
   autentication,
   ctrlWrapper(noticesCtrl.removeFromFavorite)
 );
+
 // створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
 router.delete(
   "/:noticeId",
@@ -60,10 +61,23 @@ router.post(
   ctrlWrapper(noticesCtrl.create)
 );
 // створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
+router.get("/",
+  autentication,
+  ctrlWrapper(noticesCtrl.getUsersNotices)
+);
+// створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
+router.delete(
+  "/:noticeId",
+  isValidNoticeId,
+  autentication,
+  ctrlWrapper(noticesCtrl.removeUserNotice)
+);
+
 router.get(
   "/",
   autentication,
-  ctrlWrapper(noticesCtrl.getUsersNotices));
+  ctrlWrapper(noticesCtrl.getUsersNotices)
+);
 
 // створити ендпоінт для пошуку оголошення по ключовому слову в заголовку
 // router.get(
