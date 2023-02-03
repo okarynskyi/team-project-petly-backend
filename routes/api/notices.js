@@ -19,7 +19,10 @@ router.get(
   ctrlWrapper(noticesCtrl.getByCategory)
 );
 // створити ендпоінт для отримання одного оголошення
-router.get("/:noticeId", isValidNoticeId, ctrlWrapper(noticesCtrl.getById));
+router.get(
+  "/:noticeId",
+  isValidNoticeId,
+  ctrlWrapper(noticesCtrl.getById));
 
 router.post(
   "/favorites/:noticeId",
@@ -29,7 +32,10 @@ router.post(
 );
 // створити ендпоінт для отримання оголошень авторизованого користувача доданих ним же в обрані
 
-router.get("/user/favorites", autentication, ctrlWrapper(noticesCtrl.getUserFavorites));
+router.get(
+  "/user/favorites",
+  autentication,
+  ctrlWrapper(noticesCtrl.getUserFavorites));
 // створити ендпоінт для видалення оголошення авторизованого користувача доданих цим же до обраних
 
 router.delete(
@@ -39,6 +45,13 @@ router.delete(
   ctrlWrapper(noticesCtrl.removeFromFavorite)
 );
 
+// створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
+router.delete(
+  "/:noticeId",
+  isValidNoticeId,
+  autentication,
+  ctrlWrapper(noticesCtrl.removeUserNotice)
+);
 
 router.post(
   "/",
@@ -48,13 +61,20 @@ router.post(
   ctrlWrapper(noticesCtrl.create)
 );
 // створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
-router.get("/", autentication, ctrlWrapper(noticesCtrl.getUsersNotices));
-// створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
-router.delete(
-  "/:noticeId",
-  isValidNoticeId,
+router.get("/",
   autentication,
-  ctrlWrapper(noticesCtrl.removeUserNotice)
+  ctrlWrapper(noticesCtrl.getUsersNotices)
 );
+
+router.get(
+  "/",
+  autentication,
+  ctrlWrapper(noticesCtrl.getUsersNotices)
+);
+
+// створити ендпоінт для пошуку оголошення по ключовому слову в заголовку
+// router.get(
+//   "/category",
+//   ctrlWrapper(noticesCtrl.getNoticesByQuery));
 
 module.exports = router;

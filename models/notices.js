@@ -43,6 +43,9 @@ const noticeSchema = new Schema(
       type: Number,
       default: null,
     },
+    favorite: {
+        type: Array
+    },
     owner: {
       _id: {
         type: Schema.Types.ObjectId,
