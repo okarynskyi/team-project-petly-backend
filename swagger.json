@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.5",
+    "version": "1.0.6",
     "title": "Petly API docs",
     "description": "Shows API requests to the server TEAM-PROJECT-PETLY-BACKEND"
   },
@@ -136,6 +136,11 @@
         "requestBody": {
           "description": "Update user object",
           "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserImgRequest"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequest"
@@ -241,6 +246,11 @@
           "description": "Object of user pet",
           "required": true,
           "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserPetImgRequest"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddUserPetRequest"
@@ -580,6 +590,11 @@
           "description": "Object of notice",
           "required": true,
           "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AddMyNoticeImgRequest"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddMyNoticeRequest"
@@ -876,6 +891,15 @@
           }
         }
       },
+      "UpdateUserImgRequest": {
+        "type": "object",
+        "properties": {
+          "imageURL": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      },
       "UpdateUserResponse": {
         "type": "object",
         "properties": {
@@ -914,7 +938,10 @@
       "AddUserPetRequest": {
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "birthday",
+          "breed",
+          "comments"
         ],
         "properties": {
           "name": {
@@ -939,6 +966,40 @@
           "comments": {
             "type": "string",
             "description": "Comments"
+          }
+        }
+      },
+      "AddUserPetImgRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "birthday",
+          "breed",
+          "comments"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Rex"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "2010-02-22"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "German Shepherd"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Comments"
+          },
+          "imageURL": {
+            "type": "string",
+            "format": "binary"
           }
         }
       },
@@ -1513,6 +1574,70 @@
             "type": "number",
             "description": "Notice price",
             "example": 1
+          }
+        }
+      },
+      "AddMyNoticeImgRequest": {
+        "type": "object",
+        "required": [
+          "title",
+          "name",
+          "birthday",
+          "breed",
+          "location",
+          "sex",
+          "comments",
+          "adopStatus"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Notice title",
+            "example": "Mursik for sale"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Mursik"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "2002-12-20T22:00:00.000Z"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "German sheppard"
+          },
+          "location": {
+            "type": "string",
+            "description": "Location",
+            "example": "Kyiv, Kyiv"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex",
+            "example": "male"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Notice comments",
+            "example": "Mursik for sale"
+          },
+          "adopStatus": {
+            "type": "string",
+            "description": "Notice category",
+            "example": "sell"
+          },
+          "price": {
+            "type": "number",
+            "description": "Notice price",
+            "example": 1
+          },
+          "imageURL": {
+            "type": "string",
+            "format": "binary"
           }
         }
       },
