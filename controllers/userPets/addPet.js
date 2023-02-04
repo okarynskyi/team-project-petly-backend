@@ -14,7 +14,7 @@ const addPet = async (req, res) => {
 
     res.status(201).json({
         newPet: {
-            id: result._id,
+            _id: result._id,
             name: result.name,
             birthday: result.birthday,
             breed: result.breed,
