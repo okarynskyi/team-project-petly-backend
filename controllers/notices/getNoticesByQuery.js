@@ -9,14 +9,16 @@ const getNoticesByQuery = async (req, res) => {
     // category = ""lost-found", "sell", "in-good-hands""
     // query = "..."
 
-    const userId  = req?.user?._id ?? '';
+    const userId = req?.user?._id ?? '';
+    
    
     let searchOptions={};
 
     if (category) {
+        const convertedCategory = category.replaceAll("-", " ")
         searchOptions = {
             $text: { $search: `${query}` },
-            adopStatus: category
+            adopStatus: convertedCategory
         }
     }
     if (favotite) {
