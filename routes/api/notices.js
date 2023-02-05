@@ -61,11 +61,6 @@ router.post(
   ctrlWrapper(noticesCtrl.create)
 );
 // створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
-router.get("/",
-  autentication,
-  ctrlWrapper(noticesCtrl.getUsersNotices)
-);
-
 router.get(
   "/",
   autentication,
