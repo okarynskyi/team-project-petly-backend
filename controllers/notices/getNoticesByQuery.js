@@ -16,7 +16,7 @@ const getNoticesByQuery = async (req, res) => {
     if (category) {
         searchOptions = {
             $text: { $search: `${query}` },
-            category
+            adopStatus: category
         }
     }
     if (favotite) {
