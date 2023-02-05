@@ -8,8 +8,8 @@ const getUserFavorites = async (req, res) => {
     console.log(userId)
     
     const notices = await Notice.find({ favorite: userId })
-    console.log(notices)
-    
+    .sort({ createdAt: -1 })
+       
     if (!notices) {
         HttpError(404, 'No favorites')
     }

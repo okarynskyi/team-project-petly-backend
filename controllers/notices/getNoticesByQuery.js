@@ -32,13 +32,14 @@ const getNoticesByQuery = async (req, res) => {
         }
     }
 
-    const filteredNitices = await Notice.find(searchOptions);
+    const filteredNotices = await Notice.find(searchOptions)
+        .sort({ createdAt: -1 });
     
-    if (filteredNitices.length === 0) {
+    if (filteredNotices.length === 0) {
         throw HttpError(404)
     }
 
-    res.json({filteredNitices})
+    res.json({filteredNotices})
 }
 
 module.exports = getNoticesByQuery;

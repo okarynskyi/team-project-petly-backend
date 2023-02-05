@@ -26,7 +26,7 @@ const petShema = new Schema({
     ref: 'user',
     required: true,
   },
-})
+},{ versionKey: false, timestamps: true })
 
 
 const UserPet = model("pet", petShema);
