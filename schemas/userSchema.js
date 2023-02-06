@@ -5,7 +5,7 @@ const signupSchema = Joi.object({
     password: Joi.string().trim(true).min(7).max(32).pattern(/^\S*$/).required(),
     name: Joi.string().alphanum().required(),
     location: Joi.string().regex(/[A-Z][a-z]*,\s[A-Z][a-z]*/).required(),
-    phone: Joi.string().length(13).pattern(/^\+[1-9]{1}[0-9]{3,14}$/).required()
+    phone: Joi.string().length(13).pattern(/^\+[380]{3}\d{7}/).required()
 
 })
 
@@ -18,7 +18,7 @@ const userUpdateSchema = Joi.object({
     name: Joi.string().alphanum(),
     email: Joi.string().trim(true).min(7).max(63).email(),
     birthday: Joi.date(),
-    phone: Joi.string().length(13).pattern(/^\+[1-9]{1}[0-9]{3,14}$/),
+    phone: Joi.string().length(13).pattern(/^\+[380]{3}\d{7}/),
     location: Joi.string().regex(/[A-Z][a-z]*,\s[A-Z][a-z]*/)
 })
 
