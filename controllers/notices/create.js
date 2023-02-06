@@ -3,23 +3,24 @@ const { HttpError } = require("../../helpers");
 const { uploadImgToCloudinary } = require("../../services/cloudinary");
 
 const create = async (req, res) => {
-  const { _id, email, phone } = req.user;
-  const { name, adopStatus } = req.body;
+  const { _id } = req.user;
+  const { adopStatus, title } = req.body;
 
-  const notice = await Notice.findOne({ adopStatus, name, "owner._id": _id });
+  const notice = await Notice.findOne({ adopStatus, title, owner: _id });
 
   if (notice) {
-    throw HttpError(409, `Notise "${adopStatus}" already exist for ${name}`);
+    throw HttpError(
+      409,
+      `Notise "${title}" already exist in "${adopStatus}" category`
+    );
   }
 
   const avatarURL = await uploadImgToCloudinary(req, 336, 336);
 
-  const owner = { _id, email, phone };
-
   const newNotice = await Notice.create({
     ...req.body,
     avatarURL,
-    owner,
+    owner: _id,
   });
 
   res.status(201).json({ newNotice });
