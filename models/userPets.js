@@ -19,7 +19,7 @@ const petShema = new Schema({
     },
     comments: {
         type: String,
-        required: [true, 'petsPhotoURL is required'],
+        required: [true, 'Image is required'],
     },
     owner: {
     type: Schema.Types.ObjectId,

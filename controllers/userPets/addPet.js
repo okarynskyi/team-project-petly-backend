@@ -6,11 +6,9 @@ const addPet = async (req, res) => {
 
     const imageURL = await uploadImgToCloudinary(req, 161, 161)
     
-
     const { _id: owner } = req.user;
 
-
-    const result = await UserPet.create({ ...req.body, petsPhotoURL:imageURL, owner });
+    const result = await UserPet.create({ ...req.body, petsPhotoURL: imageURL, owner });
 
     res.status(201).json({
         newPet: {
