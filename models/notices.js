@@ -9,11 +9,9 @@ const noticeSchema = new Schema(
     },
     name: {
       type: String,
-      required: true,
     },
     birthday: {
       type: Date,
-      required: true,
     },
     breed: {
       type: String,
@@ -42,10 +40,9 @@ const noticeSchema = new Schema(
     },
     price: {
       type: Number,
-      default: null,
     },
     favorite: {
-        type: Array
+      type: Array,
     },
     owner: {
       _id: {
