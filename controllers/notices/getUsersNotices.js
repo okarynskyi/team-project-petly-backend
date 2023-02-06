@@ -3,8 +3,22 @@ const { HttpError } = require("../../helpers");
 
 const getUsersNotices = async (req, res) => {
   const { _id } = req.user;
+  const { query } = req.query;
 
-  const notices = await Notice.find({ "owner._id": _id })
+  let searchOptions = {};
+
+  if (!query) {
+    searchOptions = {owner: _id}
+  } else {
+    searchOptions = {
+            $text: { $search: `${query}` },
+            owner: _id
+        }
+  }
+  
+
+  const notices = await Notice.find(searchOptions)
+    .populate('owner', 'email phone')
     .sort({ createdAt: -1 });
 
   if (notices.length === 0) {

@@ -6,7 +6,7 @@ const getById = require("./getById");
 const getUsersNotices = require("./getUsersNotices");
 const removeUserNotice = require("./removeUserNotice");
 const getUserFavorites = require('./getUserFavorites');
-const getNoticesByQuery = require('./getNoticesByQuery');
+
 
 
 module.exports = {
@@ -18,5 +18,4 @@ module.exports = {
   getUsersNotices,
   removeUserNotice,
   getUserFavorites,
-  getNoticesByQuery,
 };

@@ -67,9 +67,5 @@ router.get(
   ctrlWrapper(noticesCtrl.getUsersNotices)
 );
 
-// створити ендпоінт для пошуку оголошення по ключовому слову в заголовку
-router.get(
-  "/search/find",
-  ctrlWrapper(noticesCtrl.getNoticesByQuery));
 
 module.exports = router;
