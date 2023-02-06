@@ -16,7 +16,20 @@ const getNoticesByQuery = async (req, res) => {
     const convertedQuery= query.replaceAll("-", " ")
 
     if (category) {
-        const convertedCategory = category.replaceAll("-", " ")
+        let convertedCategory
+        switch (category) {
+            case "in-good-hands":
+                convertedCategory = category.replaceAll("-", " ");
+                break;
+            case "lost-found":
+                convertedCategory = category.replaceAll("-", "/")
+                break;
+            case "sell":
+                convertedCategory = category;
+                break
+            default: throw HttpError(400, 'Unknown category')
+        }
+        // const convertedCategory = category.replaceAll("-", " ")
         searchOptions = {
             $text: { $search: `${convertedQuery}` },
             adopStatus: convertedCategory
