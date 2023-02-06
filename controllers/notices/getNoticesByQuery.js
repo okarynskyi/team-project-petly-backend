@@ -13,7 +13,7 @@ const getNoticesByQuery = async (req, res) => {
     
    
     let searchOptions = {};
-    const convertedQuery= query.replaceAll("-", " ")
+    // const convertedQuery= query.replaceAll("-", " ")
 
     if (category) {
         let convertedCategory
@@ -31,19 +31,19 @@ const getNoticesByQuery = async (req, res) => {
         }
         
         searchOptions = {
-            $text: { $search: `${convertedQuery}` },
+            $text: { $search: `${query}` },
             adopStatus: convertedCategory
         }
     }
     if (favotite) {
         searchOptions = {
-            $text: { $search: `${convertedQuery}` },
+            $text: { $search: `${query}` },
             favorite: userId
         }
     }
     if (own) {
         searchOptions = {
-            $text: { $search: `${convertedQuery}` },
+            $text: { $search: `${query}` },
             "owner._id" : userId
         }
     }
