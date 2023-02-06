@@ -11,9 +11,8 @@ const notiseSchema = Joi.object({
     .trim(true)
     .min(2)
     .max(16)
-    .regex(/^[a-zA-Z\s]*$/)
-    .required(),
-  birthday: Joi.date().required(),
+    .regex(/^[a-zA-Z\s]*$/),
+  birthday: Joi.date(),
   breed: Joi.string()
     .trim()
     .min(2)
