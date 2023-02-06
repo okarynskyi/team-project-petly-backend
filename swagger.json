@@ -741,6 +741,76 @@
           }
         }
       }
+    },
+    "/api/notices/search/find": {
+      "get": {
+        "tags": [
+          "Notices"
+        ],
+        "summary": "Search notices",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "sell",
+                "lost-found",
+                "in-good-hands"
+              ]
+            },
+            "required": false,
+            "description": "Search in notices category"
+          },
+          {
+            "in": "query",
+            "name": "favorite",
+            "schema": {
+              "type": "boolean",
+              "allowEmptyValue": "true"
+            },
+            "required": false,
+            "description": "Search in notices category"
+          },
+          {
+            "in": "query",
+            "name": "own",
+            "schema": {
+              "type": "boolean",
+              "allowEmptyValue": "true"
+            },
+            "required": false,
+            "description": "Search in notices category"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Search word"
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticesSearchResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Wrong query",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
