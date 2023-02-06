@@ -29,7 +29,7 @@ const getNoticesByQuery = async (req, res) => {
                 break
             default: throw HttpError(400, 'Unknown category')
         }
-        // const convertedCategory = category.replaceAll("-", " ")
+        
         searchOptions = {
             $text: { $search: `${convertedQuery}` },
             adopStatus: convertedCategory
