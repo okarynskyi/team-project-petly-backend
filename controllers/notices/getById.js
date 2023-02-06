@@ -4,7 +4,8 @@ const { HttpError } = require("../../helpers");
 const getById = async (req, res) => {
   const { noticeId } = req.params;
 
-  const result = await Notice.findOne({ _id: noticeId });
+  const result = await Notice.findOne({ _id: noticeId })
+    .populate('owner', 'email phone');
 
   if (!result) {
     throw HttpError(404);

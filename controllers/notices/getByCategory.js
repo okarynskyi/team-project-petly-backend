@@ -3,8 +3,21 @@ const { HttpError } = require("../../helpers");
 
 const getByCategory = async (req, res) => {
   const { category } = req.params;
+  const { query } = req.query;
+   
+  let searchOptions = {};
 
-  const notices = await Notice.find({ adopStatus: category })
+  if (!query) {
+    searchOptions = {adopStatus: category}
+  } else {
+    searchOptions = {
+            $text: { $search: `${query}` },
+            adopStatus: category
+        }
+  }      
+  
+  const notices = await Notice.find(searchOptions)
+    .populate('owner', 'email phone')
     .sort({ createdAt: -1 });
 
   if (notices.length === 0) {
