@@ -1,31 +1,18 @@
-const { Notice } = require('../../models');
-const { HttpError } = require('../../helpers');
-
+const { Notice } = require("../../models");
+const { HttpError, buildQuery } = require("../../helpers");
 
 const getUserFavorites = async (req, res) => {
-    const { _id: userId } = req.user;
-    const { query } = req.query;
+  const { _id: userId } = req.user;
 
-    let searchOptions = {};
+  const notices = await Notice.find(buildQuery(req, { favorite: userId }))
+    .populate("owner", "email phone")
+    .sort({ createdAt: -1 });
 
-    if (!query) {
-    searchOptions = {favorite: userId}
-  } else {
-    searchOptions = {
-            $text: { $search: `${query}` },
-            favorite: userId
-        }
+  if (!notices) {
+    HttpError(404, "No favorites");
   }
-    
-    const notices = await Notice.find(searchOptions)
-        .populate('owner', 'email phone')
-        .sort({ createdAt: -1 })
-       
-    if (!notices) {
-        HttpError(404, 'No favorites')
-    }
-    
-    res.json({ notices });
-}
+
+  res.json({ notices });
+};
 
 module.exports = getUserFavorites;

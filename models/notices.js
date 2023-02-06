@@ -46,7 +46,8 @@ const noticeSchema = new Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'user',
+      ref: "user",
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }
