@@ -4,7 +4,7 @@ function buildQuery(req, searchParams) {
   if (!query) {
     return searchParams;
   }
-  const preparedQuery = query.trim().replaceAll("_", " ");
+  const preparedQuery = query.trim().replace(/_./g, " ");
   return { ...searchParams, $text: { $search: `"${preparedQuery}"` } };
 }
 
