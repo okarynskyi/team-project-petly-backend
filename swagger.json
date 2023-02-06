@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.6",
+    "version": "1.0.7",
     "title": "Petly API docs",
     "description": "Shows API requests to the server TEAM-PROJECT-PETLY-BACKEND"
   },
@@ -15,7 +15,7 @@
   ],
   "servers": [
     {
-      "url": "https://petly-backend-v11f.onrender.com/"
+      "url": "http://localhost:3000/"
     }
   ],
   "tags": [
