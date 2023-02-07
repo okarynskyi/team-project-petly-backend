@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.7",
+    "version": "1.0.8",
     "title": "Petly API docs",
     "description": "Shows API requests to the server TEAM-PROJECT-PETLY-BACKEND"
   },
@@ -482,8 +482,25 @@
           {
             "in": "path",
             "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "sell",
+                "lost-found",
+                "in-good-hands"
+              ]
+            },
             "required": true,
-            "description": "Notices category (sell, lost-found, in-good-hands)"
+            "description": "Notices category"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "To search in a category, write a search word"
           }
         ],
         "requestBody": {},
@@ -605,7 +622,17 @@
           "Notices"
         ],
         "summary": "Get user's favorites",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "To search in a category, write a search word"
+          }
+        ],
         "security": [
           {
             "Bearer": []
@@ -696,7 +723,17 @@
           "Notices"
         ],
         "summary": "Get all my notices",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "To search in a category, write a search word"
+          }
+        ],
         "security": [
           {
             "Bearer": []
@@ -809,85 +846,6 @@
           },
           "404": {
             "description": "Wrong address or id",
-            "content": {}
-          },
-          "500": {
-            "description": "Server error",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/api/notices/search/find": {
-      "get": {
-        "tags": [
-          "Notices"
-        ],
-        "summary": "Search notices",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "category",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "sell",
-                "lost-found",
-                "in-good-hands"
-              ]
-            },
-            "required": false,
-            "description": "Search in notices category"
-          },
-          {
-            "in": "query",
-            "name": "favorite",
-            "schema": {
-              "type": "boolean",
-              "allowEmptyValue": "true"
-            },
-            "required": false,
-            "description": "Search in notices category"
-          },
-          {
-            "in": "query",
-            "name": "own",
-            "schema": {
-              "type": "boolean",
-              "allowEmptyValue": "true"
-            },
-            "required": false,
-            "description": "Search in notices category"
-          },
-          {
-            "in": "query",
-            "name": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Search word"
-          }
-        ],
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
-        "requestBody": {},
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoticesSearchResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
             "content": {}
           },
           "500": {
@@ -1329,31 +1287,6 @@
         "items": {
           "type": "object",
           "properties": {
-            "owner": {
-              "type": "object",
-              "properties": {
-                "_id": {
-                  "type": "string",
-                  "description": "User's id",
-                  "example": "63d83eed283db645e170fd5f"
-                },
-                "email": {
-                  "type": "string",
-                  "description": "User's email",
-                  "format": "email"
-                },
-                "phone": {
-                  "type": "string",
-                  "description": "User's phone",
-                  "example": "+380000000000"
-                }
-              }
-            },
-            "favorites": {
-              "type": "array",
-              "description": "User's phone",
-              "example": []
-            },
             "_id": {
               "type": "string",
               "description": "Notice id",
@@ -1408,6 +1341,31 @@
               "type": "number",
               "description": "Notice price",
               "example": 1
+            },
+            "favorites": {
+              "type": "array",
+              "description": "User's phone",
+              "example": []
+            },
+            "owner": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "User's id",
+                  "example": "63d83eed283db645e170fd5f"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "User's email",
+                  "format": "email"
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "User's phone",
+                  "example": "+380000000000"
+                }
+              }
             },
             "createdAt": {
               "type": "string",
@@ -1577,26 +1535,6 @@
             "items": {
               "type": "object",
               "properties": {
-                "owner": {
-                  "type": "object",
-                  "properties": {
-                    "_id": {
-                      "type": "string",
-                      "description": "User's id",
-                      "example": "63d83eed283db645e170fd5f"
-                    },
-                    "email": {
-                      "type": "string",
-                      "description": "User's email",
-                      "format": "email"
-                    },
-                    "phone": {
-                      "type": "string",
-                      "description": "User's phone",
-                      "example": "+380000000000"
-                    }
-                  }
-                },
                 "_id": {
                   "type": "string",
                   "description": "Notice id",
@@ -1656,6 +1594,26 @@
                   "type": "array",
                   "description": "User's phone",
                   "example": []
+                },
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "User's id",
+                      "example": "63d83eed283db645e170fd5f"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "User's email",
+                      "format": "email"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "description": "User's phone",
+                      "example": "+380000000000"
+                    }
+                  }
                 },
                 "createdAt": {
                   "type": "string",
@@ -1901,26 +1859,6 @@
         "items": {
           "type": "object",
           "properties": {
-            "owner": {
-              "type": "object",
-              "properties": {
-                "_id": {
-                  "type": "string",
-                  "description": "User's id",
-                  "example": "63d83eed283db645e170fd5f"
-                },
-                "email": {
-                  "type": "string",
-                  "description": "User's email",
-                  "format": "email"
-                },
-                "phone": {
-                  "type": "string",
-                  "description": "User's phone",
-                  "example": "+380000000000"
-                }
-              }
-            },
             "_id": {
               "type": "string",
               "description": "Notice id",
@@ -1981,6 +1919,26 @@
               "description": "User's phone",
               "example": []
             },
+            "owner": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "User's id",
+                  "example": "63d83eed283db645e170fd5f"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "User's email",
+                  "format": "email"
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "User's phone",
+                  "example": "+380000000000"
+                }
+              }
+            },
             "createdAt": {
               "type": "string",
               "description": "Notice createdAt",
@@ -2001,109 +1959,6 @@
             "type": "string",
             "description": "Notice deleted",
             "example": "Notice deleted"
-          }
-        }
-      },
-      "NoticesSearchResponse": {
-        "type": "object",
-        "properties": {
-          "filteredNotices": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "owner": {
-                  "type": "object",
-                  "properties": {
-                    "_id": {
-                      "type": "string",
-                      "description": "User's id",
-                      "example": "63d83eed283db645e170fd5f"
-                    },
-                    "email": {
-                      "type": "string",
-                      "description": "User's email",
-                      "format": "email"
-                    },
-                    "phone": {
-                      "type": "string",
-                      "description": "User's phone",
-                      "example": "+380000000000"
-                    }
-                  }
-                },
-                "_id": {
-                  "type": "string",
-                  "description": "Notice id",
-                  "example": "63d83eed283db645e170fd5f"
-                },
-                "title": {
-                  "type": "string",
-                  "description": "Notice title",
-                  "example": "Mursik for sale"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "Pet's name",
-                  "example": "Mursik"
-                },
-                "birthday": {
-                  "type": "string",
-                  "description": "Pet's birthday",
-                  "example": "2002-12-20T22:00:00.000Z"
-                },
-                "breed": {
-                  "type": "string",
-                  "description": "Pet's breed",
-                  "example": "German sheppard"
-                },
-                "location": {
-                  "type": "string",
-                  "description": "Location",
-                  "example": "Kyiv, Kyiv"
-                },
-                "sex": {
-                  "type": "string",
-                  "description": "Pet's sex",
-                  "example": "male"
-                },
-                "comments": {
-                  "type": "string",
-                  "description": "Notice comments",
-                  "example": "Mursik for sale"
-                },
-                "avatarURL": {
-                  "type": "string",
-                  "description": "Pet's avatar",
-                  "example": "https://"
-                },
-                "adopStatus": {
-                  "type": "string",
-                  "description": "Notice category",
-                  "example": "sell"
-                },
-                "price": {
-                  "type": "number",
-                  "description": "Notice price",
-                  "example": 1
-                },
-                "favorites": {
-                  "type": "array",
-                  "description": "User's phone",
-                  "example": []
-                },
-                "createdAt": {
-                  "type": "string",
-                  "description": "Notice createdAt",
-                  "example": "2023-01-30T22:04:29.984Z"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "description": "Notice updatedAt",
-                  "example": "2023-01-30T22:04:29.984Z"
-                }
-              }
-            }
           }
         }
       }
