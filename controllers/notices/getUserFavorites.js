@@ -9,7 +9,7 @@ const getUserFavorites = async (req, res) => {
     .sort({ createdAt: -1 });
 
   if (!notices) {
-    HttpError(404, "No favorites");
+    throw HttpError(404, "No favorites");
   }
 
   res.json({ notices });
