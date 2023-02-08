@@ -29,7 +29,8 @@ exports.createImageUrl = async (publicId, w, h) => {
     const imageTag = cloudinary.url(publicId, {
       transformation: [
         { width: w, height: h, gravity: "auto", crop: "fill"},
-      ],
+        ],
+        secure: true,
     });
     
 
