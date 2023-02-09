@@ -22,7 +22,7 @@ exports.uploads = (file, folder) => {
             folder: folder
         })
     })
-}
+};
 
 exports.createImageUrl = async (publicId, w, h) => {
 

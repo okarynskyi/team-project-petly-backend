@@ -3,28 +3,22 @@ const fs = require('fs');
 
 const uploadImgToCloudinary = async (req, w, h) => {
 
-    let imageURL = null
+    let imageURL = null;
 
     if (req.file) {
-        const path = req.file.path
-        
 
-        const uploader = async (path) => await cloudinary.uploads(path, 'Images')
+        const path = req.file.path;
+        const uploader = async (path) => await cloudinary.uploads(path, 'Images');
+        const newURL = await uploader(path);
 
-        const newURL = await uploader(path)
+        fs.unlinkSync(path);
 
-        fs.unlinkSync(path)
+        const id = newURL.id;
 
-        const id = newURL.id
-
-       imageURL = await cloudinary.createImageUrl(id, w, h)
+        imageURL = await cloudinary.createImageUrl(id, w, h);
     }
-    
 
-    
-    
-    
-    return imageURL
-}
+    return imageURL;
+};
 
     module.exports = uploadImgToCloudinary;
