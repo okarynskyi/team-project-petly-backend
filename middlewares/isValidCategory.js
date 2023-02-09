@@ -1,14 +1,12 @@
 const { HttpError } = require("../helpers");
+const {categorySchema} = require('../schemas')
 
 const isValidCategory = (req, res, next) => {
   const { category } = req.params;
 
-  if (
-    category !== "in-good-hands" &&
-    category !== "lost-found" &&
-    category !== "sell"
-  ) {
-    next(HttpError(404, "Invalid category"));
+  const { error } = categorySchema.validate(category);
+  if (error) {
+    next(HttpError(404, "Invalid category")) ;
   }
 
   if (category === "in-good-hands") {
