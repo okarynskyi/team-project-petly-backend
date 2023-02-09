@@ -1,22 +1,19 @@
-const { User, UserPet } = require("../../models")
+const { UserPet } = require("../../models")
 
 const getUserData = async (req, res) => {
 
-    const { _id: owner} = req.user;
-
-    const user = await User.findById({_id:owner});
-
-    const userPets = await UserPet.find({ owner });
+    const { _id: id, name, email, location, phone, birthday, avatarURL} = req.user;
+    const userPets = await UserPet.find({ id });
 
     res.status(200).json({
         user: {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            location: user.location,
-            phone: user.phone,
-            birthday: user.birthday,
-            avatarURL: user.avatarURL,
+            id,
+            name,
+            email,
+            location,
+            phone,
+            birthday,
+            avatarURL,
         },
         userPets
     });
