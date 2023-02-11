@@ -5,9 +5,15 @@
 - `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
 - `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
 
+.
+.
+
 Working backend on RENDER.COM: https://petly-backend-v11f.onrender.com
 
 Petly API docs: https://petly-backend-v11f.onrender.com/api-docs/
+
+.
+.
 
                            AUTH ROUTE
 
